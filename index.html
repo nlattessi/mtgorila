@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>MTGorila</title>
 
-  <link type="text/css" rel="stylesheet" href="simplePagination.css"/>
+  <!-- <link type="text/css" rel="stylesheet" href="simplePagination.css"/> -->
 
   <style>
     .imagen {
@@ -25,6 +25,10 @@
       <input type="text" placeholder="carta..." ng-model="mtgorila.nombre">
       <input type="submit" value="Buscar">
     </form>
+
+    <p ng-show="mtgorila.noEncontrado">
+      <b>Carta no encontrada...</b>
+    </p>
 
     <div ng-show="mtgorila.encontrado">
       <table>
