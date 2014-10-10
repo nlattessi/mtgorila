@@ -1,1 +1,75 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en" ng-app="mtgorila">
+<head>
+  <meta charset="UTF-8">
+  <title>MTGorila</title>
+
+  <link type="text/css" rel="stylesheet" href="simplePagination.css"/>
+
+  <style>
+    .imagen {
+      max-width: 75px;
+      max-width: 150px;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <div ng-controller="CardController as mtgorila">
+    <h1>MTGorila</h1>
+
+    <form name="buscarForm" ng-submit="mtgorila.buscar()">
+      <input type="text" placeholder="carta..." ng-model="mtgorila.nombre">
+      <input type="submit" value="Buscar">
+    </form>
+
+    <div ng-show="mtgorila.encontrado">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Carta</th>
+            <th>TCG</th>
+            <th>x5</th>
+            <th>x10</th>
+            <th>x15</th>
+            <th>x20</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="carta in mtgorila.cartas">
+            <td><a href="{{carta.store_url}}">{{carta.nombre}}</a></td>
+            <td><img class="imagen" ng-src="{{carta.image_url}}"/></td>
+            <td>{{carta.precio | currency}}</td>
+            <td>{{carta.precio *5 | currency}}</td>
+            <td>{{carta.precio *10 | currency}}</td>
+            <td>{{carta.precio *15 | currency}}</td>
+            <td>{{carta.precio *20 | currency}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- <div id="light-pagination" class="pagination"></div> -->
+
+  </div>
+
+  <!--
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="jquery.simplePagination.js"></script>
+
+  <script>
+    $('#light-pagination').pagination({
+        items: 100,
+        itemsOnPage: 10,
+        cssStyle: 'light-theme',
+        hrefTextPrefix: 'https://api.deckbrew.com/mtg/cards?name='
+    });
+  </script>
+  -->
+
+</body>
+</html>
